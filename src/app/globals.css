@@ -31,7 +31,7 @@ body {
 
 .card {
   overflow-x: scroll;
-  /* scroll-snap-type: x mandatory; */
+  scroll-snap-type: x mandatory;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,6 +42,8 @@ figure {
   margin: 10px;
   text-align: center;
   flex: 0 0 auto;
+  scroll-snap-align: center;
+  transform-origin: center;
 }
 
 img {

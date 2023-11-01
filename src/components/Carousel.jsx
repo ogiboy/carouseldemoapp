@@ -16,22 +16,24 @@ export default function Carousel() {
       prevMainPhoto === spacePhotos.length - 1 ? 0 : prevMainPhoto + 1
     )
   }
-  // transform: `translateX(${offset}%)`,
 
   return (
     <div className="wrapper">
       <div className="card">
         {spacePhotos.map((photo, index) => {
-          const offset = index - mainPhoto
-          const isMainPhoto = Math.abs(offset) === 0
-          const style = {
-            opacity: Math.abs(offset) === 0 ? 1 : 0.5,
-          }
+          const isMainPhoto = index === mainPhoto
           const imageWidth = isMainPhoto ? 700 : 500
           const imageHeight = 500
+          const style = {
+            opacity: isMainPhoto ? 1 : 0.7,
+          }
 
           return (
-            <figure key={photo.id} style={style}>
+            <figure
+              style={style}
+              className={isMainPhoto ? 'main' : ''}
+              key={photo.id}
+            >
               <Image
                 src={photo.img}
                 alt={photo.name}
