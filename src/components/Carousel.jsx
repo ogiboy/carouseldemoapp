@@ -1,8 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { spacePhotos } from './images'
 import Image from 'next/image'
+import { useScreenSize } from './ScreenContext'
 
 export default function Carousel() {
+  const { screenType } = useScreenSize()
+
   const [mainPhoto, setMainPhoto] = useState(0)
 
   const handlePreBtn = () => {
@@ -19,27 +22,28 @@ export default function Carousel() {
 
   const handleDots = (index) => setMainPhoto(index)
 
+  useEffect(() => {
+    const autoSlider = setInterval(() => {
+      setMainPhoto((prevSlide) => (prevSlide + 1) % spacePhotos.length)
+    }, 3000)
+    return () => clearInterval(autoSlider)
+  }, [spacePhotos])
+
   return (
-    <div className="wrapper">
-      <div className="card">
+    <div className={`wrapper ${screenType}`}>
+      <div className={`card ${screenType}`}>
         {spacePhotos.map((photo, index) => {
           const isMainPhoto = index === mainPhoto
           const imageWidth = isMainPhoto ? 700 : 500
-          const imageHeight = 500
-          {
-            /* const style = {
-            opacity: isMainPhoto ? 1 : 0.7,
-          } */
-          }
-
+          const imageHeight = isMainPhoto ? 550 : 500
           const imageStyle = {
             borderRadius: '20px',
+            width: imageHeight,
+            height: imageHeight,
           }
-
           return (
             <figure
-              // style={style}
-              className={isMainPhoto ? 'main' : ''}
+              className={`${isMainPhoto ? 'main' : ''} ${screenType}`}
               key={photo.id}
             >
               <Image
@@ -50,13 +54,15 @@ export default function Carousel() {
                 height={imageHeight}
                 placeholder="blur"
                 style={imageStyle}
+                layout="fixed"
+                sizes="100vw"
               />
               <figcaption>{photo.name}</figcaption>
             </figure>
           )
         })}
       </div>
-      <div className="dots">
+      <div className={`dots ${screenType}`}>
         {spacePhotos.map((photo, index) => (
           <span
             key={index}
@@ -65,7 +71,7 @@ export default function Carousel() {
           ></span>
         ))}
       </div>
-      <div className="controls">
+      <div className={`controls ${screenType}`}>
         <button onClick={handlePreBtn} className="preBtn">
           Previous
         </button>

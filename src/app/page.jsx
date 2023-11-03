@@ -1,13 +1,23 @@
 'use client'
 
 import Carousel from '@/components/Carousel'
+import { ScreenSizeProvider, useScreenSize } from '@/components/ScreenContext'
 
-const HomePage = () => {
+const ResponsiveCarousel = () => {
+  const { screenType } = useScreenSize()
   return (
-    <div className="App">
+    <div className={`App ${screenType}`}>
       <h1>Carousel Demo</h1>
       <Carousel />
     </div>
   )
 }
-export default HomePage
+
+const App = () => {
+  return (
+    <ScreenSizeProvider>
+      <ResponsiveCarousel />
+    </ScreenSizeProvider>
+  )
+}
+export default App

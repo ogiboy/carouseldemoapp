@@ -1,3 +1,12 @@
+:root {
+  --primary-color: #cdb4db;
+  --secondary-color: #bde0fe;
+  --button-color: #ffafcc;
+  --button-hover: #ffc8dd;
+  --special-color: #a2d2ff;
+  --heading-color: #023047;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +16,7 @@
 body {
   font-family: sans-serif;
   height: 100vh;
+  background-color: var(--secondary-color);
 }
 
 .App > h1 {
@@ -15,10 +25,11 @@ body {
   padding: 20px;
   font-style: italic;
   letter-spacing: 5px;
+  color: var(--heading-color);
 }
 
 .wrapper {
-  border: 1px solid black;
+  border: 2px solid var(--primary-color);
   border-radius: 20px;
   width: 80%;
   min-height: 85vh;
@@ -44,6 +55,7 @@ figure {
   scroll-snap-align: center;
   position: relative;
   overflow: hidden;
+  opacity: 0.7;
   /* transform-origin: center; */
 }
 
@@ -56,15 +68,15 @@ figure.main {
   position: absolute;
   z-index: 999;
   animation-name: slider;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  background-color: rgba(200, 200, 200, 0.9);
+  animation-duration: 0.7s;
+  animation-timing-function: ease-in-out;
+  background-color: rgba(101, 101, 101, 0.2);
   border-radius: 20px;
+  opacity: 1;
 }
 
 figure.main figcaption {
   display: block;
-  background-color: rgba(200, 200, 200, 0.9);
   border-radius: 20px;
   padding: 3px;
 }
@@ -78,13 +90,9 @@ figure.main figcaption {
   }
 }
 
-/* img {
-  border-radius: 20px;
-} */
-
 .controls {
   text-align: center;
-  min-height: 15vh;
+  max-height: 15vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,29 +104,77 @@ figure.main figcaption {
   font-size: 1.2em;
   margin: 5px;
   border-radius: 20px;
+  background-color: var(--button-color);
+  color: var(--special-color);
+  border: none;
 }
 
 button:hover {
   cursor: pointer;
   text-decoration: underline;
+  background-color: var(--button-hover);
+  color: var(--secondary-color);
 }
 
 .dots {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 30px;
+  min-height: 3vh;
 }
 
 .dot {
   display: inline-block;
   width: 10px;
   height: 10px;
-  background-color: #f3f3f3;
   border-radius: 50%;
   margin: 0 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  background-color: var(--special-color);
 }
 
 .dot.active {
-  background-color: #888;
+  background-color: var(--primary-color);
+}
+
+/* Media Queries */
+
+/* widescreen */
+
+.card.widescreen {
+  width: 90%;
+  margin: 5px auto;
+  height: 90vh;
+}
+
+.card.laptop {
+  width: 80%;
+  margin: auto;
+  height: 90vh;
+}
+
+figure.laptop {
+  width: 75%;
+}
+
+.card.tablet {
+  width: 70%;
+  margin: auto;
+}
+
+figure.tablet {
+  width: fit-content;
+  margin: auto;
+  height: 90vh;
+}
+
+.card.mobile {
+  width: 70%;
+  margin: auto;
+}
+
+figure.mobile {
+  width: fit-content;
+  margin: auto;
+  height: 90vh;
 }
