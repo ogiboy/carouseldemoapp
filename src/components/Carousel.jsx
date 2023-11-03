@@ -54,7 +54,6 @@ export default function Carousel() {
                 height={imageHeight}
                 placeholder="blur"
                 style={imageStyle}
-                layout="fixed"
                 sizes="100vw"
               />
               <figcaption>{photo.name}</figcaption>
