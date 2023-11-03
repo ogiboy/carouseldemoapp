@@ -41,14 +41,46 @@ figure {
   padding: 10px;
   margin: 10px;
   text-align: center;
-  flex: 0 0 auto;
   scroll-snap-align: center;
-  transform-origin: center;
+  position: relative;
+  overflow: hidden;
+  /* transform-origin: center; */
 }
 
-img {
+figcaption {
+  display: none;
+}
+
+figure.main {
+  overflow: visible;
+  position: absolute;
+  z-index: 999;
+  animation-name: slider;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  background-color: rgba(200, 200, 200, 0.9);
   border-radius: 20px;
 }
+
+figure.main figcaption {
+  display: block;
+  background-color: rgba(200, 200, 200, 0.9);
+  border-radius: 20px;
+  padding: 3px;
+}
+
+@keyframes slider {
+  from {
+    opacity: 0.7;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* img {
+  border-radius: 20px;
+} */
 
 .controls {
   text-align: center;
@@ -69,4 +101,24 @@ img {
 button:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.dots {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: #f3f3f3;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dot.active {
+  background-color: #888;
 }

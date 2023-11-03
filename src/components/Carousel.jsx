@@ -17,6 +17,8 @@ export default function Carousel() {
     )
   }
 
+  const handleDots = (index) => setMainPhoto(index)
+
   return (
     <div className="wrapper">
       <div className="card">
@@ -24,13 +26,19 @@ export default function Carousel() {
           const isMainPhoto = index === mainPhoto
           const imageWidth = isMainPhoto ? 700 : 500
           const imageHeight = 500
-          const style = {
+          {
+            /* const style = {
             opacity: isMainPhoto ? 1 : 0.7,
+          } */
+          }
+
+          const imageStyle = {
+            borderRadius: '20px',
           }
 
           return (
             <figure
-              style={style}
+              // style={style}
               className={isMainPhoto ? 'main' : ''}
               key={photo.id}
             >
@@ -40,11 +48,22 @@ export default function Carousel() {
                 id={photo.id}
                 width={imageWidth}
                 height={imageHeight}
+                placeholder="blur"
+                style={imageStyle}
               />
               <figcaption>{photo.name}</figcaption>
             </figure>
           )
         })}
+      </div>
+      <div className="dots">
+        {spacePhotos.map((photo, index) => (
+          <span
+            key={index}
+            className={`dot ${index === mainPhoto ? 'active' : ''}`}
+            onClick={() => handleDots(index)}
+          ></span>
+        ))}
       </div>
       <div className="controls">
         <button onClick={handlePreBtn} className="preBtn">
