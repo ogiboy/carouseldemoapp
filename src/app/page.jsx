@@ -1,3 +1,5 @@
+"use client"
+
 import Carousel from '@/components/Carousel'
 import { ScreenSizeProvider, useScreenSize } from '@/components/ScreenContext'
 
