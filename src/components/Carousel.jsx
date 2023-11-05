@@ -29,7 +29,7 @@ export default function Carousel() {
       setMainPhoto((prevSlide) => (prevSlide + 1) % spacePhotos.length)
     }, 3000)
     return () => clearInterval(autoSlider)
-  }, [spacePhotos])
+  }, [])
 
   return (
     <div className={`wrapper ${screenType}`}>
