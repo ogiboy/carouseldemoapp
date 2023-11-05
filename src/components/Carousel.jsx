@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useState } from 'react'
 import { spacePhotos } from './images'
 import Image from 'next/image'
